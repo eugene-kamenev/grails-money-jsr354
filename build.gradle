@@ -1,0 +1,49 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url "https://repo.grails.org/grails/core" }
+    }
+    dependencies {
+        classpath "io.github.groovylang.groovydoc:groovydoc-gradle-plugin:1.0.1"
+        classpath "org.grails:grails-gradle-plugin:$grailsVersion"
+    }
+}
+
+apply plugin:"eclipse"
+apply plugin:"idea"
+apply plugin:"groovy"
+apply plugin: 'maven-publish'
+
+group 'com.github.eugene-kamenev'
+version '0.0.1'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    maven { url "https://repo.grails.org/grails/core" }
+}
+
+dependencies {
+    compile "org.grails:grails-core:$grailsVersion"
+    compile "org.grails:grails-dependencies:$grailsVersion"
+    compile "org.grails:grails-web-boot:$grailsVersion"
+    compile "org.grails.plugins:hibernate5:$gormVersion"
+    compile 'org.javamoney:moneta:1.3'
+    
+    compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
+    
+    testCompile  "org.grails:grails-plugin-testing:$grailsVersion"
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId 'com.github.eugene-kamenev'
+            artifactId 'grails-money-jsr354'
+            version '0.0.1'
+            from components.java
+        }
+    }
+}

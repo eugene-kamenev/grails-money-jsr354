@@ -1,0 +1,3 @@
+moduleName=Money Groovy extension.
+moduleVersion=1.0.0
+extensionClasses=org.javamoney.groovy.MoneyExtension
